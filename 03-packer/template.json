@@ -1,0 +1,34 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `AWS_ACCESS_KEY`}}`",
+        "aws_secret_key": "{{env `AWS_SECRET_KEY`}}`"
+    },
+    "sensitive-variables": [
+        "aws_access_key",
+        "aws_secret_key"
+    ],
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "eu-west-1",
+            "source_ami": "ami-06f7efb202729c3c5",
+            "instance_type": "c4.large",
+            "ssh_username": "ubuntu",
+            "ami_name": "pmi-ansible {{timestamp}}",
+            "vpc_id": "vpc-0007a098ab71d5563",
+            "subnet_id": "subnet-00a070fb4ca54fabb",
+            "run_tags": {
+                "Name": "packer-builder",
+                "Tool": "Packer",
+                "Author": "AlexBudurovici"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "../01-provision-machine/playbook.yaml",
+            "galaxy_file": "../01-provision-machine/requirements.yaml"
+        }
+    ]
+}

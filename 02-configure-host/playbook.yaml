@@ -1,0 +1,6 @@
+---
+- name: Configure remote host
+  hosts: webservers
+  become: true
+  roles:
+    - { role: nginx, tags: ["nginx"] }

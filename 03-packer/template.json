@@ -14,7 +14,7 @@
             "source_ami": "ami-06f7efb202729c3c5",
             "instance_type": "c4.large",
             "ssh_username": "ubuntu",
-            "ami_name": "pmi-ansible {{timestamp}}",
+            "ami_name": "ansible {{timestamp}}",
             "vpc_id": "vpc-0007a098ab71d5563",
             "subnet_id": "subnet-00a070fb4ca54fabb",
             "run_tags": {
@@ -27,8 +27,8 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "../01-provision-machine/playbook.yaml",
-            "galaxy_file": "../01-provision-machine/requirements.yaml"
+            "playbook_file": "../01-vagrant/playbook.yaml",
+            "galaxy_file": "../01-vagrant/requirements.yaml"
         }
     ]
 }
